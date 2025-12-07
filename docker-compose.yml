@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  android7:
+    build: .
+    container_name: android7_x86
+    ports:
+      - "5900:5900"
+    environment:
+      - DISPLAY=:0
+    privileged: true
