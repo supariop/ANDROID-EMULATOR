@@ -1,11 +1,28 @@
-version: "3.8"
+version: "3.9"
 
 services:
-  android7:
-    build: .
-    container_name: android7_x86
-    ports:
-      - "5900:5900"
-    environment:
-      - DISPLAY=:0
+  android:
+    container_name: android_ultra_light
+    image: budtmo/docker-android-arm64:13.0
     privileged: true
+    ports:
+      - "6080:6080"    # Web VNC
+      - "5554:5554"    # ADB
+      - "5555:5555"    # ADB
+    environment:
+      DEVICE: "Nexus 5"
+      EMULATOR: "true"
+      CONTAINER_NAME: "android_ultra_light"
+
+      # Ultra-light mode
+      DISABLE_HW_ACCELERATION: "true"
+      WEB_VNC: "true"
+
+      # Your VNC password
+      VNC_PASSWORD: "Clown80990@"
+
+    volumes:
+      - android_data:/data
+
+volumes:
+  android_data:
